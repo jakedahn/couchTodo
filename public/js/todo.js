@@ -12,6 +12,8 @@ $(document).ready(function() {
       }
     });
   
-  
+  /*
+    TODO figure out how to pull new _rev to allow multiple state changes
+  */
   
 });
