@@ -1,0 +1,17 @@
+<%= erb(:header, :layout => false) %>
+            <div id="content">
+                <h2>Gallery</h2>
+                <ul>
+                    <%= @data[rows].each do |site| %>
+                    <li>
+                        <a href="<%= site['url'] %>">
+                            <h3><%= site['id'] %></h3>
+                            <span class="desc"><%= site['desc'] %></span>
+                            <img src="" alt="<%= site['desc'] %>" title="<%= site['title'] %>"/>
+                            <span class="rating"><%= site['rating'] %></span>
+                        </a>
+                    </li>
+                    <%= end %>
+                </ul>
+            </div>
+<%= erb(:footer, :layout => false) %>
