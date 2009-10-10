@@ -6,9 +6,6 @@ require 'json'
 require 'pp'
 
 DB = "http://localhost:5984/todo"
-@db = CouchRest.database!("http://localhost:5984/todo")
-# TODO: Switch to just couchrest or just restclient - learn rest!
-
 
 module CouchTodo
   class App < Sinatra::Default
@@ -31,11 +28,12 @@ module CouchTodo
     post '/update' do
       plist = {:_id  =>  params[:_id], :_rev =>  params[:_rev], :done =>  params[:done], :task =>  params[:task]}
       RestClient.post("#{DB}", plist.to_json)
+      
     end
     
-    put '/create' do
-      # TODO: create from submit form
-
+    post '/create' do
+      plist = {:task =>  params[:task], :done =>  params[:done]}
+      RestClient.post("#{DB}", plist.to_json)
     end
     
   end
