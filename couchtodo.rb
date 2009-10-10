@@ -32,7 +32,7 @@ module CouchTodo
     end
     
     post '/create' do
-      plist = {:task =>  params[:task], :done =>  params[:done]}
+      plist = {:task =>  params[:task], :done =>  'false'}
       RestClient.post("#{DB}", plist.to_json)
     end
     

@@ -1,12 +1,12 @@
 
             <div id="content">
-              <form action="/create" method="post">
+              <form id="create" action="/create" method="post">
                 <label for="task">Add Todo: </label>
                 <input type="text" name="task" value="" id="task" />
                 <input type="submit" value="Add"/>
 
               </form>
-                <ol>
+                <ol id="list">
                     <% @data['rows'].each do |wokka| %>
                     <li id="<%=wokka['value']['_id']%>" class="<%=wokka['value']['done']%>" title="<%=wokka['value']['_rev']%>" ><%=wokka['value']['task']%></li>
                     <% end %>
