@@ -15,8 +15,13 @@ module CouchTodo
     set :sessions, false
     set :run, false
 
-    
-    
+## Debug
+    before do
+      puts '[Params start]'
+      pp params
+      puts '[Params end]'
+    end
+##
     get '/' do
       @data = JSON.parse(RestClient.get("#{DB}/_design/todos/_view/all"))
       
@@ -24,9 +29,8 @@ module CouchTodo
     end
     
     post '/update' do
-      result = @db.save_doc(params)
-      return result.inspect
-      #TODO: fix the "can't convert array to string" error - why does it update even with error present?
+      plist = {:_id  =>  params[:_id], :_rev =>  params[:_rev], :done =>  params[:done], :task =>  params[:task]}
+      RestClient.post("#{DB}", plist.to_json)
     end
     
     put '/create' do
